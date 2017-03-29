@@ -1,35 +1,85 @@
-# Redux Counter Example
+## Counter example app
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-This project template was built with [Create React App](https://github.com/facebookincubator/create-react-app), which provides a simple way to start React projects with no build configuration needed.
+**It implements:**
+* `Counter` component that shows current count and implements buttons that sends INCREMENT and DECREMENT actions
 
-Projects built with Create-React-App include support for ES6 syntax, as well as several unofficial / not-yet-final forms of Javascript syntax such as Class Properties and JSX.  See the list of [language features and polyfills supported by Create-React-App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#supported-language-features-and-polyfills) for more information.
+**It has two versions**
 
-## Available Scripts
+* **on master branch**: Initial version in React component and Redux state with `render` method passed to `store.subscribe`
+```
+git checkout master
+```
+* **on dev-counter-connected-plus-redux-devtools branch**: Version with `react-redux` library added that introduces `connect` method to provide props (data from state and actions to dispatch) to App component
+```
+git checkout dev-counter-connected-plus-redux-devtools
+```
+## Run in development mode
+```node
+npm install
+npm start
+```
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser
 
-In the project directory, you can run:
+## Minimum files set
+For the project to build, **these files must exist with exact filenames**:
 
-### `npm start`
+* `public/index.html` is the page template;
+* `src/index.js` is the JavaScript entry point.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can delete or rename the other files.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+You may create subdirectories inside `src`. For faster rebuilds, only files inside `src` are processed by Webpack.<br>
+You need to **put any JS and CSS files inside `src`**, or Webpack won’t see them.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tips: Importing a Component
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+This project setup supports ES6 modules thanks to Babel.<br>
+use [`import` and `export`](http://exploringjs.com/es6/ch_modules.html).
 
-### `npm run eject`
+For example:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `Button.js` - example class component
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+import React, { Component } from 'react';
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+class Button extends Component {
+  render() {
+    // ...
+  }
+}
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+export default Button; // Don’t forget to use export default!
+```
+
+### `DangerButton.js` - example functional component
+
+```js
+import React, { Component } from 'react';
+import Button from './Button'; // Import a component from another file
+
+class DangerButton extends Component {
+  render() {
+    return <Button color="red" />;
+  }
+}
+
+export default DangerButton;
+```
+
+Be aware of the [difference between default and named exports](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281). It is a common source of mistakes.
+
+We suggest that you stick to using default imports and exports when a module only exports a single thing (for example, a component). That’s what you get when you use `export default Button` and `import Button from './Button'`.
+
+Named exports are useful for utility modules that export several functions. A module may have at most one default export and as many named exports as you like.
+
+### Tips: Learn more about ES6 modules:
+
+* [When to use the curly braces?](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281)
+* [Exploring ES6: Modules](http://exploringjs.com/es6/ch_modules.html)
+* [Understanding ES6: Modules](https://leanpub.com/understandinges6/read#leanpub-auto-encapsulating-code-with-modules)
+
+## Guide 
+Full version of the quide for apps created with `create-react-app` you [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
