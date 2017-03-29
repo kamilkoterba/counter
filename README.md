@@ -6,11 +6,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 **It has two versions**
 
-* **on master branch**: Initial version in React component and Redux state with `render` method passed to `store.subscribe`
+* **on master branch**: Initial version implemented with redux library that introduces redux `store, actions and reducers` (with `render` method passed to `store.subscribe`)
 ```
 git checkout master
 ```
-* **on dev-counter-connected-plus-redux-devtools branch**: Version with `react-redux` library added that introduces `connect` method to provide props (data from state and actions to dispatch) to App component
+* **on dev-counter-connected-plus-redux-devtools branch**: Version with `react-redux` library added that introduces `connect` method to provide props (data from state and actions to dispatch) to App component (no explicit store.subscribe needed)
 ```
 git checkout dev-counter-connected-plus-redux-devtools
 ```
