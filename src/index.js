@@ -1,24 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
-
-import { incrementAction, decrementAction } from './actions';
+import { Provider } from "react-redux";
+import DevTools from "./containers/DevTools"
 import counterReducer from './reducers';
-import Counter from './components/Counter';
+import CounterConnected from './containers/CounterConnected';
 
 // Store
-const store = createStore(counterReducer);
+const store = createStore(counterReducer, DevTools.instrument());
 
 // DOM
-const render = () => ReactDOM.render(
-    <Counter
-        value={ store.getState() }
-        onIncrement={ () => store.dispatch(incrementAction) }
-        onDecrement={ () => store.dispatch(decrementAction) }
-    />,
+ReactDOM.render(
+    <div>
+        <Provider store={ store }>
+            <CounterConnected />
+        </Provider>
+        <DevTools store={ store } />
+    </div>,
     document.getElementById('root')
 );
-
-// Render and subscribe
-render();
-store.subscribe(render);

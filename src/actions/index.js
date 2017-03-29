@@ -1,3 +1,3 @@
-export const incrementAction = { type: "INCREMENT" };
-export const decrementAction = { type: "DECREMENT" };
+export const createIncrementAction = () => { return {type: "INCREMENT" } };
+export const createDecrementAction = () => { return { type: "DECREMENT" } };
 
